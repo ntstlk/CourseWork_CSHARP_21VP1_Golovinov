@@ -1,0 +1,908 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CourseWork</name>
+    </assembly>
+    <members>
+        <member name="T:CourseWork.MainForm">
+            <summary>
+            Главная форма приложения
+            </summary>
+        </member>
+        <member name="F:CourseWork.MainForm._criticService">
+            <summary>
+            Сервис для работы с критиками
+            </summary>
+        </member>
+        <member name="F:CourseWork.MainForm._poetService">
+            <summary>
+            Сервис для работы с поэтами
+            </summary>
+        </member>
+        <member name="F:CourseWork.MainForm._poemService">
+            <summary>
+            Сервис для работы со стихами
+            </summary>
+        </member>
+        <member name="F:CourseWork.MainForm._choosenPoet">
+            <summary>
+            Выбранный поэт
+            </summary>
+        </member>
+        <member name="F:CourseWork.MainForm._choosenCritic">
+            <summary>
+            Выбранный критик
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.#ctor">
+            <summary>
+            Конструктор формы
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.FormatDataGrids">
+            <summary>
+            Форматирует DataGridView
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.GetSelectedRowFromDataGrid(System.Windows.Forms.DataGridView)">
+            <summary>
+            Получает выбранную строку из DataGridView
+            </summary>
+            <param name="dataGrid">DataGridView</param>
+            <returns>Выбранная строка</returns>
+        </member>
+        <member name="M:CourseWork.MainForm.ReplaceRowInDataGrid(System.Windows.Forms.DataGridView,System.Int32,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Заменяет строку в DataGridView
+            </summary>
+            <param name="dataGrid">DataGridView</param>
+            <param name="rowToReplaceIndex">Индекс строки для замены</param>
+            <param name="columnValuePairs">Пары столбец-значение</param>
+        </member>
+        <member name="M:CourseWork.MainForm.AddRowToDataGrid(System.Windows.Forms.DataGridView,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Добавляет строку в DataGridView
+            </summary>
+            <param name="dataGrid">DataGridView</param>
+            <param name="columnValuePairs">Пары столбец-значение</param>
+        </member>
+        <member name="M:CourseWork.MainForm.ShowRowsWithKeyword(System.Windows.Forms.DataGridView,System.String)">
+            <summary>
+            Показывает строки, содержащие заданное ключевое слово
+            </summary>
+            <param name="dataGridView">DataGridView</param>
+            <param name="keyword">Ключевое слово для поиска</param>
+        </member>
+        <member name="M:CourseWork.MainForm.CheckInput(System.Windows.Forms.Control,System.Func{System.Text.RegularExpressions.Regex},System.Func{System.String})">
+            <summary>
+            Проверяет вводимые данные с помощью регулярного выражения
+            </summary>
+            <param name="input">Контрол ввода</param>
+            <param name="RegexGen">Функция генерации регулярного выражения</param>
+            <param name="RequirementsGen">Функция генерации требований к вводу</param>
+            <returns>True, если ввод корректен</returns>
+        </member>
+        <member name="M:CourseWork.MainForm.TabControl_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик изменения выбранной вкладки TabControl
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.DeletePoetBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки удаления поэта
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.AddPoetBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки добавления поэта
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.UpdatePoetBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки обновления поэта
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.DataGridPoets_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Обработчик двойного клика по строке DataGridView поэтов
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.PoetSearchBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки поиска поэтов
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.ClearPoetsInputs">
+            <summary>
+            Очищает поля ввода поэтов
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.ClearPoetInputsBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки очистки полей ввода поэтов
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.DeleteAllPoetsBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки удаления всех поэтов
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.LoadPoetsDataGrid">
+            <summary>
+            Загружает данные поэтов в DataGridView
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.DeleteCriticBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки удаления критика
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.AddCriticBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки добавления критика
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.UpdateCriticBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки обновления критика
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.CriticDataGrid_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Обработчик двойного клика по строке DataGridView критиков
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.ClearCriticsInputs">
+            <summary>
+            Очищает поля ввода критиков
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.ClearCriticsInputsBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки очистки полей ввода критиков
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.CriticSearchBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки поиска критиков
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.DeleteAllCriticsBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки удаления всех критиков
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.LoadCriticDataGrid">
+            <summary>
+            Загружает данные критиков в DataGridView
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.AddPoemBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки добавления стихотворения
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.LoadPoemDataGrid">
+            <summary>
+            Загружает данные стихотворений в DataGridView
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.DeleteAlllPoemsBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик кнопки удаления всех стихотворений
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.PoemDataGrid_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Обработчик двойного клика по строке DataGridView стихотворений
+            </summary>
+        </member>
+        <member name="F:CourseWork.MainForm.components">
+            <summary>
+            Обязательная переменная конструктора.
+            </summary>
+        </member>
+        <member name="M:CourseWork.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Освободить все используемые ресурсы.
+            </summary>
+            <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        </member>
+        <member name="M:CourseWork.MainForm.InitializeComponent">
+            <summary>
+            Требуемый метод для поддержки конструктора — не изменяйте 
+            содержимое этого метода с помощью редактора кода.
+            </summary>
+        </member>
+        <member name="M:CourseWork.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:CourseWork.Source.DataBaseRelated.DataBase">
+            <summary>
+            Класс для работы с базой данных SQLite
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.DataBaseRelated.DataBase.Connection">
+            <summary>
+            Соединение с базой данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.DataBaseRelated.DataBase.ExecuteCommandNQ(System.Data.SQLite.SQLiteCommand)">
+            <summary>
+            Выполняет команду SQLite без возвращения результата
+            </summary>
+            <param name="command">Команда SQLite</param>
+        </member>
+        <member name="M:CourseWork.Source.DataBaseRelated.DataBase.ExecuteCommandScalar(System.Data.SQLite.SQLiteCommand)">
+            <summary>
+            Выполняет команду SQLite и возвращает скалярный результат
+            </summary>
+            <param name="command">Команда SQLite</param>
+            <returns>Результат выполнения команды</returns>
+        </member>
+        <member name="M:CourseWork.Source.DataBaseRelated.DataBase.GetDataTable(System.Data.SQLite.SQLiteCommand)">
+            <summary>
+            Выполняет команду SQLite и возвращает результат в виде DataTable
+            </summary>
+            <param name="command">Команда SQLite</param>
+            <returns>Таблица данных</returns>
+        </member>
+        <member name="M:CourseWork.Source.DataBaseRelated.DataBase.GetRowAsDictionary(System.Data.SQLite.SQLiteCommand)">
+            <summary>
+            Получает строку из базы данных в виде словаря
+            </summary>
+            <param name="command">Команда SQLite</param>
+            <returns>Словарь с данными строки</returns>
+        </member>
+        <member name="M:CourseWork.Source.DataBaseRelated.DataBase.GetColumnValuesAsList(System.Data.SQLite.SQLiteCommand)">
+            <summary>
+            Получает значения из одного столбца базы данных в виде списка
+            </summary>
+            <param name="command">Команда SQLite</param>
+            <returns>Список значений столбца</returns>
+        </member>
+        <member name="T:CourseWork.Source.Services.DataBaseService">
+            <summary>
+            Класс для управления базой данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.DataBaseService._instance">
+            <summary>
+            Единственный экземпляр класса (Singleton)
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.DataBaseService._dataBasesPath">
+            <summary>
+            Путь к папке с базами данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.DataBaseService._dataBase">
+            <summary>
+            Экземпляр базы данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.#ctor">
+            <summary>
+            Приватный конструктор класса
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.GetInstance">
+            <summary>
+            Получить экземпляр класса DataBaseService (Singleton)
+            </summary>
+            <returns>Экземпляр DataBaseService</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.SetNewDataBase(System.String)">
+            <summary>
+            Создать новую базу данных и настроить соединение
+            </summary>
+            <param name="dataBaseName">Имя базы данных</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.SetExistingDataBase(System.String)">
+            <summary>
+            Подключиться к существующей базе данных
+            </summary>
+            <param name="dataBaseName">Имя базы данных</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.SetConnectionToDataBase(System.String)">
+            <summary>
+            Установить соединение с базой данных
+            </summary>
+            <param name="dataBasePath">Путь к файлу базы данных</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.SetDataBaseToServices">
+            <summary>
+            Установить базу данных для сервисов
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.CreateDataTables">
+            <summary>
+            Создать таблицы в базе данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.CheckDataBaseExists(System.String)">
+            <summary>
+            Проверить существование базы данных
+            </summary>
+            <param name="dataBaseName">Имя базы данных</param>
+            <returns>True, если база данных существует</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.RegexDataBaseName">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [A-Za-z\u0410] atomically at least 3 and at most 15 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.DataBaseService.GetRequirementsForDataBaseName">
+            <summary>
+            Требования к имени базы данных
+            </summary>
+            <returns>Строка с описанием требований</returns>
+        </member>
+        <member name="T:CourseWork.Source.Services.CriticService">
+            <summary>
+            Класс для работы со критиками
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Services.CriticService.DB">
+            <summary>
+            Экземпляр базы данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.CriticService.TableName">
+            <summary>
+            Имя таблицы в базе данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.CriticService.ColumnMapping">
+            <summary>
+            Сопоставление свойств класса с полями таблицы
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.GetByPhoneNumber(System.String)">
+            <summary>
+            Получить объект Person по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона для поиска</param>
+            <returns>Объект Person</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.GetDataTableOfAll">
+            <summary>
+            Получить таблицу всех критиков
+            </summary>
+            <returns>DataTable с критиками</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.Save(CourseWork.Source.Entities.Person)">
+            <summary>
+            Сохранить нового критика в базу данных
+            </summary>
+            <param name="employee">Объект Person для сохранения</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.Delete(System.String)">
+            <summary>
+            Удалить критика по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона критика</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.Update(CourseWork.Source.Entities.Person)">
+            <summary>
+            Обновить информацию о критике
+            </summary>
+            <param name="employee">Объект Person с обновленными данными</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.DeleteAll">
+            <summary>
+            Удалить всех критиков из базы данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.GetFormatDateOfBirth(System.DateTime)">
+            <summary>
+            Получить дату рождения в формате строки
+            </summary>
+            <param name="dateOfBirth">Дата рождения</param>
+            <returns>Строка даты</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.LoadFields(System.String)">
+            <summary>
+            Загрузить данные по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона</param>
+            <returns>Словарь полей и значений</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.Exists(System.String)">
+            <summary>
+            Проверить существование критика по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона</param>
+            <returns>True, если существует</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.RegexFirstName">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [A-Za-z\u0401\u0410-\u044F\u0451] atomically at least 3 and at most 15 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.GetRequirementsForFirstName">
+            <summary>
+            Требования к имени
+            </summary>
+            <returns>Описание требований</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.RegexLastName">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [A-Za-z\u0401\u0410-\u044F\u0451] atomically at least 3 and at most 15 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.GetRequirementsForLastName">
+            <summary>
+            Требования к фамилии
+            </summary>
+            <returns>Описание требований</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.RegexPhoneNumber">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match '+' atomically, optionally.<br/>
+            ○ Match a Unicode digit greedily at least 1 and at most 3 times.<br/>
+            ○ Match a whitespace character atomically, optionally.<br/>
+            ○ Match '(' atomically, optionally.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            ○ Match ')' atomically, optionally.<br/>
+            ○ Match a character in the set [-.\s] greedily, optionally.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            ○ Match a character in the set [-.\s] greedily, optionally.<br/>
+            ○ Match a Unicode digit exactly 4 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.CriticService.GetRequirementsForPhoneNumber">
+            <summary>
+            Требования к номеру телефона
+            </summary>
+            <returns>Описание требований</returns>
+        </member>
+        <member name="T:CourseWork.Source.Services.PoemService">
+            <summary>
+            Класс для работы со стихами
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Services.PoemService.DB">
+            <summary>
+            Экземпляр базы данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.PoemService.TableName">
+            <summary>
+            Имя таблицы в базе данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.PoemService.ColumnMapping">
+            <summary>
+            Сопоставление свойств класса с полями таблицы
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoemService.Save(CourseWork.Source.Entities.Poem)">
+            <summary>
+            Сохранить новое стихотворение в базу данных
+            </summary>
+            <param name="poem">Объект стихотворения</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoemService.DeleteAll">
+            <summary>
+            Удалить все стихотворения из базы данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoemService.GetDataTableOfAll">
+            <summary>
+            Получить таблицу всех стихотворений
+            </summary>
+            <returns>Таблица со всеми стихотворениями</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoemService.Exists(CourseWork.Source.Entities.Poem)">
+            <summary>
+            Проверить, существует ли стихотворение в базе данных
+            </summary>
+            <param name="poem">Объект стихотворения</param>
+            <returns>True, если существует</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoemService.GetFormatDate(System.DateTime)">
+            <summary>
+            Форматировать дату в строку
+            </summary>
+            <param name="date">Дата</param>
+            <returns>Строка в формате "yyyy-MM-dd"</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoemService.GetFormatTime(System.DateTime)">
+            <summary>
+            Форматировать время в строку
+            </summary>
+            <param name="time">Время</param>
+            <returns>Строка в формате "HH:mm"</returns>
+        </member>
+        <member name="T:CourseWork.Source.Services.PoetService">
+            <summary>
+            Класс для работы с поэтами
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Services.PoetService.DB">
+            <summary>
+            Экземпляр базы данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.PoetService.TableName">
+            <summary>
+            Имя таблицы в базе данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Services.PoetService.ColumnMapping">
+            <summary>
+            Сопоставление свойств класса с полями таблицы
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.GetByPhoneNumber(System.String)">
+            <summary>
+            Получить объект Person по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона для поиска</param>
+            <returns>Объект Person</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.GetDataTableOfAll">
+            <summary>
+            Получить таблицу всех поэтов
+            </summary>
+            <returns>DataTable с поэтами</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.Save(CourseWork.Source.Entities.Person)">
+            <summary>
+            Сохранить нового поэта в базу данных
+            </summary>
+            <param name="poet">Объект поэта для сохранения</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.Delete(System.String)">
+            <summary>
+            Удалить поэта по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона поэта</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.Update(CourseWork.Source.Entities.Person)">
+            <summary>
+            Обновить информацию о поэте
+            </summary>
+            <param name="poet">Объект поэта с обновленными данными</param>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.DeleteAll">
+            <summary>
+            Удалить всех поэтов из базы данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.GetFormatDateOfBirth(System.DateTime)">
+            <summary>
+            Получить дату рождения в формате строки
+            </summary>
+            <param name="dateOfBirth">Дата рождения</param>
+            <returns>Строка даты в формате "yyyy-MM-dd"</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.LoadFields(System.String)">
+            <summary>
+            Загрузить поля по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона для поиска</param>
+            <returns>Словарь полей и значений</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.Exists(System.String)">
+            <summary>
+            Проверить существование поэта по номеру телефона
+            </summary>
+            <param name="phoneNumber">Номер телефона</param>
+            <returns>True, если поэт существует</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.RegexFirstName">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [A-Za-z\u0401\u0410-\u044F\u0451] atomically at least 3 and at most 15 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.GetRequirementsForFirstName">
+            <summary>
+            Требования к имени
+            </summary>
+            <returns>Описание требований к имени</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.RegexLastName">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match a character in the set [A-Za-z\u0401\u0410-\u044F\u0451] atomically at least 3 and at most 15 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.GetRequirementsForLastName">
+            <summary>
+            Требования к фамилии
+            </summary>
+            <returns>Описание требований к фамилии</returns>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.RegexPhoneNumber">
+            <remarks>
+            Pattern explanation:<br/>
+            <code>
+            ○ Match if at the beginning of the string.<br/>
+            ○ Match '+' atomically, optionally.<br/>
+            ○ Match a Unicode digit greedily at least 1 and at most 3 times.<br/>
+            ○ Match a whitespace character atomically, optionally.<br/>
+            ○ Match '(' atomically, optionally.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            ○ Match ')' atomically, optionally.<br/>
+            ○ Match a character in the set [-.\s] greedily, optionally.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            ○ Match a character in the set [-.\s] greedily, optionally.<br/>
+            ○ Match a Unicode digit exactly 4 times.<br/>
+            ○ Match if at the end of the string or if before an ending newline.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:CourseWork.Source.Services.PoetService.GetRequirementsForPhoneNumber">
+            <summary>
+            Требования к номеру телефона
+            </summary>
+            <returns>Описание требований к номеру телефона</returns>
+        </member>
+        <member name="T:CourseWork.Source.Entities.Person">
+            <summary>
+            Класс, представляющий информацию о человеке
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Person.PhoneNumber">
+            <summary>
+            Номер телефона (первичный ключ в базе данных)
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Person.FirstName">
+            <summary>
+            Имя
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Person.LastName">
+            <summary>
+            Фамилия
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Person.DateOfBirth">
+            <summary>
+            Дата рождения
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Person.Role">
+            <summary>
+            Роль человека (поэт или критик)
+            </summary>
+        </member>
+        <member name="T:CourseWork.Source.Entities.Person.Roles">
+            <summary>
+            Перечисление ролей, соответствует таблицам базы данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Entities.Person.Roles.Poet">
+            <summary>
+            Поэт
+            </summary>
+        </member>
+        <member name="F:CourseWork.Source.Entities.Person.Roles.Critic">
+            <summary>
+            Критик
+            </summary>
+        </member>
+        <member name="T:CourseWork.Source.Entities.Poem">
+            <summary>
+            Класс, представляющий стихотворение
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Poem.PoetPhoneNumber">
+            <summary>
+            Номер телефона поэта
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Poem.CriticPhoneNumber">
+            <summary>
+            Номер телефона критика
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Poem.Uploaded">
+            <summary>
+            Дата и время загрузки стихотворения
+            </summary>
+        </member>
+        <member name="P:CourseWork.Source.Entities.Poem.TextData">
+            <summary>
+            Текст стихотворения
+            </summary>
+        </member>
+        <member name="T:CourseWork.WelcomeForm">
+            <summary>
+            Форма приветствия приложения
+            </summary>
+        </member>
+        <member name="F:CourseWork.WelcomeForm.dataBaseService">
+            <summary>
+            Сервис для работы с базой данных
+            </summary>
+        </member>
+        <member name="M:CourseWork.WelcomeForm.#ctor">
+            <summary>
+            Конструктор формы
+            </summary>
+        </member>
+        <member name="M:CourseWork.WelcomeForm.StartBtn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Обработчик нажатия кнопки "Начать"
+            </summary>
+        </member>
+        <member name="M:CourseWork.WelcomeForm.SetUpDB">
+            <summary>
+            Настройка базы данных
+            </summary>
+        </member>
+        <member name="F:CourseWork.WelcomeForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:CourseWork.WelcomeForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:CourseWork.WelcomeForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:coursework.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:coursework.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:coursework.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexDataBaseName_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the RegexDataBaseName method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexDataBaseName_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexFirstName_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the RegexFirstName method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.RegexFirstName_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexFirstName_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexFirstName_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexFirstName_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexFirstName_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexFirstName_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexFirstName_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexFirstName_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the RegexPhoneNumber method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.RegexPhoneNumber_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
+    </members>
+</doc>
